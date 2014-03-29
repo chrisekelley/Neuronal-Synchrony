@@ -12,7 +12,8 @@ $(function() {
     $('#credits ul').append('<li><div id="loops" /></li>');
     $('<svg version="1.1" id="lp_recpause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="8 8 16 16" enable-background="new 8 8 16 16" xml:space="preserve"><circle fill="#cccccc" cx="16" cy="16" r="6"/>"/>').appendTo('#loops');
     $('<svg version="1.1" style="display:none" id="lp_stop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="8 8 16 16" enable-background="new 8 8 16 16" xml:space="preserve"><rect x="10.75" y="10.125" width="10.5" height="10.5" fill="#cccccc" /></svg>').appendTo('#loops');
-    
+    $('<input/>').attr({ type: 'text', size: '4', id: 'bpm', name: 'bpm', value: '120'}).appendTo('#loops');
+
 
 
     // http://www.reddit.com/r/Music/comments/21cs3i/fun_beat_mixer_in_your_browser_just_press_keys_on/cgcfxxg
@@ -20,6 +21,8 @@ $(function() {
     // Do what you want with this code under the MIT license
     // http://opensource.org/licenses/MIT
     var bpm = 120;
+    var bpmInput = $( "#bpm" );
+    bpm = bpmInput.val();
     var sec = 2;
     var pat = [];
     // Keep track of setInterval functions for future removal:
@@ -39,8 +42,24 @@ $(function() {
 
     function onKeyDown(e) {
         //console.log("keydown");
+        if (e.target.id === 'bpm') {
+          var input = $( "#bpm" );
+          if (e.which >= 48 && e.which <= 57) {
+            var res = String.fromCharCode(e.which);
+            input.val( input.val() + res );
+          }
+          if (e.which == 8) {
+            var bpmValue = input.val();
+            if (bpmValue.length > 0) {
+              bpmValue = bpmValue.substring(0, bpmValue.length-1);
+              input.val(bpmValue);
+            }
+          }
+        }
+
         // Stop looping on "delete" key press:
-        if (e.which == 46) {
+        // changed from 46
+        if (e.which == 8) {
             stopLoop();
             isSimulated = false;
             return false;
@@ -51,7 +70,13 @@ $(function() {
             return false;
         };
         if (is_recording) {
-            var interval = window.setInterval(function() {
+          // ignore when setting bpm
+          if (e.target.id === 'bpm') {
+            return false;
+          }
+          bpm = bpmInput.val();
+          console.log("Current bpm: " + bpm);
+          var interval = window.setInterval(function() {
                 //console.log('Pressing', e.which)
                 simulateKeypress(e.which)
             }, (4 * (sec * 1000) * 60 / bpm))
