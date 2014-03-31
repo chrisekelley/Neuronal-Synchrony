@@ -318,3 +318,22 @@ body {
 
   to {
     transform: rotate(360deg); } }
+
+input, select {
+    /*width: 120px;*/
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 1em;
+    margin-left: 6px;
+    /*vertical-align: text-bottom;*/
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    border: 1px solid #ccc;
+}
+
+input[type="button"],
+input[type="submit"] {
+    padding: 2px;
+}
