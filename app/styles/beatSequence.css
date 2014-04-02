@@ -1,0 +1,29 @@
+.note {
+  margin-bottom: 1em;
+}
+#pattern { border-spacing: 0; }
+#pattern td {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+#pattern td.active { background-color: LightGrey; }
+#pattern .beat {
+  border-radius: 0.5em;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: grey;
+  cursor: pointer;
+}
+#pattern .beat.active {
+  background-color: LightGreen;
+}
+#play_triangle {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 8px 0 8px 13.9px;
+    border-color: transparent transparent transparent #007bff;
+
+}

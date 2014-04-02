@@ -1,0 +1,16 @@
+body {
+    background: #fafafa;
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+}
+
+#sequencer_panel {
+    width: 190px;
+    position: absolute;
+    /*margin-left: 1010px;*/
+    margin-top: 80px;
+    right: 5px;
+}
