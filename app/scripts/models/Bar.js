@@ -10,6 +10,9 @@ NeuronalSynchrony.Models = NeuronalSynchrony.Models || {};
         url: '',
 
         initialize: function() {
+          this.bind("remove", function() {
+            this.destroy();
+          });
         },
 
         defaults: {
@@ -28,5 +31,6 @@ NeuronalSynchrony.Models = NeuronalSynchrony.Models || {};
         db: PouchDB('SEQdb')
       })
     });
+
 
 })();

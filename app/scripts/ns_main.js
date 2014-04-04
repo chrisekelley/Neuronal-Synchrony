@@ -235,7 +235,14 @@ $(function() {
       createMobileUI();
     } else {
       $credits.css('display', 'block');
-      $hint.find('.message').html('Press any key, A to Z or spacebar, and turn up speakers');
+      $hint.find('.message').html('Press any key, A to Z or spacebar, and turn up speakers. ' +
+        '<br/>Sequencer:' +
+        '<ul style="text-align: left; margin: 1em"><li>To record/play a sequence, move the mouse in the lower area to reveal the menu.</li>' +
+        '<li>Click the round grey button to record bars. </li>' +
+        '<li>Click the play button to play bars.</li>' +
+        '<li>Click the cabinet to record a new bar.</li>' +
+        '<li>The metronome may be muted.</li>' +
+        '</ul>');
     }
 
     two

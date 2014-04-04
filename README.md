@@ -14,5 +14,5 @@ Sequencing comes from [WAAClock](https://github.com/sebpiq/WAAClock) from [sebpi
 Uses the [duloop.js](https://github.com/albinotonnina/Neuronal-Synchrony/commit/e4f4268f0d187ae76f31dc73470c3a38aca86ca1)
 from  [albinotonnina](https://github.com/albinotonnina) to trigger the graphics.
 
-
+Icons thanks to [icomoon](http://icomoon.io)
 

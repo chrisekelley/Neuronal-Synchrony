@@ -25,5 +25,37 @@
     border-style: solid;
     border-width: 8px 0 8px 13.9px;
     border-color: transparent transparent transparent #007bff;
-
+}
+#play_seq_button {
+    position:relative;
+    top:10px;
+}
+#lp_recpause {
+    position:relative;
+    top:10px;
+}
+#lp_stop {
+    position:relative;
+    top:10px;
+}
+#new_seq_button {
+    position:relative;
+    top:10px;
+}
+.sequencerPanel {
+    text-align: center;
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 12px;
+    /*line-height: 64px; */
+}
+#metro_trigger {
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+.deleteBar:hover {
+    background-color:yellow
+}
+.playBar:hover {
+    background-color:lightblue;
 }
