@@ -9,6 +9,7 @@ window.NeuronalSynchrony = {
     init: function () {
         'use strict';
         console.log('Hello from Backbone!');
+
     }
 };
 

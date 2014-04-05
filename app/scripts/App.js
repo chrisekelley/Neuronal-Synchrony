@@ -20,8 +20,10 @@
   NeuronalSynchrony.addRegions({
     headerRegion:"header",
     mainRegion:"#content",
+    creditsRegion:"#credits",
     seqPanelRegion:"#sequencer_panel"
   });
+
 
   NeuronalSynchrony.addInitializer(function () {
     Backbone.history.start();
@@ -40,5 +42,7 @@
 $(document).ready(function () {
   'use strict';
   NeuronalSynchrony.init();
+  NeuronalSynchrony.MainMenuView = new NeuronalSynchrony.Views.MainMenuView();
+  NeuronalSynchrony.creditsRegion.show(NeuronalSynchrony.MainMenuView)
 });
 

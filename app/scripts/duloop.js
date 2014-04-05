@@ -139,7 +139,7 @@ $(function() {
 
   $('#new_seq_button').bind('click', {}, function(event) {
     var beatAssets = []
-    for (var beatInd = 0; beatInd < signature; beatInd++) {
+    for (var beatInd = 0; beatInd < NeuronalSynchrony.signature; beatInd++) {
       var event = NeuronalSynchrony.beats['graphics'][beatInd]
       if (event != null) {
         var asset = event.asset;
@@ -170,6 +170,13 @@ $(function() {
   });
 
   NeuronalSynchrony.Song = new NeuronalSynchrony.Collections.SongCollection;
+  NeuronalSynchrony.SequencerLayout = new NeuronalSynchrony.Layouts.SequencerLayout();
+  NeuronalSynchrony.SequencerPanel = new NeuronalSynchrony.Layouts.SequencerPanel();
+
+//  NeuronalSynchrony.SequencerLayout.on("show", function(){
+//    NeuronalSynchrony.SequencerLayout.barsRegion.show(NeuronalSynchrony.SequencerPanel);
+//    NeuronalSynchrony.SequencerLayout.toolsRegion.show(contactsListView);
+//  });
 
   $('#play_seq_button').bind('click', {}, function(event) {
     var opts = {
@@ -194,9 +201,16 @@ $(function() {
           itemView : NeuronalSynchrony.Views.BarView
         };
         var view = new NeuronalSynchrony.Views.SongView(viewOptions)
-        NeuronalSynchrony.seqPanelRegion.show(view);
-        $('#sequencer_panel').show();
+//        NeuronalSynchrony.seqPanelRegion.show(view);
+//        $('#sequencer_panel').show();
+//        $('#stop_seq_button').show();
+        NeuronalSynchrony.seqPanelRegion.on("show", function(){
+          NeuronalSynchrony.SequencerLayout.toolsRegion.show(NeuronalSynchrony.SequencerPanel);
+          NeuronalSynchrony.SequencerLayout.barsRegion.show(view);
+        });
 
+        NeuronalSynchrony.seqPanelRegion.show(NeuronalSynchrony.SequencerLayout);
+        $('#sequencer_panel').show();
       }
     });
   });
@@ -205,7 +219,7 @@ $(function() {
   NeuronalSynchrony.beatCount = -1;
   NeuronalSynchrony.beats = {}
   var uiNextBeat = function() {
-    NeuronalSynchrony.beatCount = (NeuronalSynchrony.beatCount + 1) % signature
+    NeuronalSynchrony.beatCount = (NeuronalSynchrony.beatCount + 1) % NeuronalSynchrony.signature
     //console.log("beatCount: " + NeuronalSynchrony.beatCount);
     $('#pattern td').removeClass('active')
     $('#pattern td:nth-child('+(NeuronalSynchrony.beatCount+1)+')').addClass('active')
@@ -216,8 +230,8 @@ $(function() {
     , soundBank = {}
 //  , tempo = QUERY.tempo || 120
     , tempo = QUERY.tempo ||  bpmInput.val()
-    , signature = NeuronalSynchrony.signature  || 4
-    , beatDur = 60/tempo, barDur = signature * beatDur
+//    , signature = NeuronalSynchrony.signature  || 4
+    , beatDur = 60/tempo, barDur = NeuronalSynchrony.signature * beatDur
     , clock = new WAAClock(context, {toleranceEarly: 0.1})
 
 // The following code highlights the current beat in the UI by calling the function `uiNextBeat` periodically.
@@ -306,14 +320,14 @@ $(function() {
   loadTrackFromPath('assets/B/flash-2.mp3')
   NeuronalSynchrony.beats['assets/B/flash-2.mp3'] = {}
 
-  $('#signature').html(signature)
+  $('#signature').html(NeuronalSynchrony.signature)
   $('#tempo').html(tempo)
   $('#pattern tr').each(function() {
     var track = $(this)
       , trackName = track.data('track')
     loadTrack(trackName)
     NeuronalSynchrony.beats[trackName] = {}
-    for (var beatInd = 0; beatInd < signature; beatInd++) {
+    for (var beatInd = 0; beatInd < NeuronalSynchrony.signature; beatInd++) {
       var td = $('<td class="'+beatInd+'"><div class="beat"></div></td>')
       td.appendTo(track)
       td.find('.beat').click(function(beatInd) {

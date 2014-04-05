@@ -59,3 +59,16 @@
 .playBar:hover {
     background-color:lightblue;
 }
+#outerSeqToolBar {
+    position:relative;
+}
+#seqToolBar {
+    padding: .5em .5em 0em .5em;
+    text-align: left;
+    background-color: #666666;
+    position:absolute;
+    top:50%;
+    height:2em;
+    width:155px;
+    margin-top:-2.5em
+}
