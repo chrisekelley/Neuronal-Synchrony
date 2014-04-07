@@ -122,98 +122,13 @@ $(function() {
 
   // Metronome UI
 
-  var mute_metronome = true;
-
-
-  $('#sequencerText-menu').bind('click', {}, function(event) {
-    if (mute_metronome) {
-      mute_metronome = false;
-      $('#metro_trigger')[0].style.color = '#000000';
-      $('#metro_trigger')[0].style.textDecoration = 'none';
-    } else {
-      mute_metronome = true;
-      $('#metro_trigger')[0].style.color = 'red';
-      $('#metro_trigger')[0].style.textDecoration = 'line-through';
-    }
-  });
-
-  $('#new_seq_button').bind('click', {}, function(event) {
-    var beatAssets = []
-    for (var beatInd = 0; beatInd < NeuronalSynchrony.signature; beatInd++) {
-      var event = NeuronalSynchrony.beats['graphics'][beatInd]
-      if (event != null) {
-        var asset = event.asset;
-        NeuronalSynchrony.currentBar = NeuronalSynchrony.currentBar + 1;
-        beatAssets[beatInd] = asset
-        event.clear()
-      }
-    }
-    if (beatAssets.length > 0) {
-      var doc = new NeuronalSynchrony.Models.BarModel({sessionName: NeuronalSynchrony.sessionName, currentBar: NeuronalSynchrony.currentBar, beatAssets:beatAssets});
-      doc.save(function(err, response) {
-        if (err) {
-          console.log("err: " + err)
-        } else {
-          console.log("Clearing current bar.")
-        }
-      });
-    }
-
-//    db.allDocs({include_docs: true}, function(err, response) {
-//      if (err) {
-//        console.log("err: " + err)
-//      } else {
-//        console.log("Here are some docs.")
-//      }
-//    });
-
-  });
-
-  NeuronalSynchrony.Song = new NeuronalSynchrony.Collections.SongCollection;
-  NeuronalSynchrony.SequencerLayout = new NeuronalSynchrony.Layouts.SequencerLayout();
-  NeuronalSynchrony.SequencerPanel = new NeuronalSynchrony.Layouts.SequencerPanel();
+  NeuronalSynchrony.mute_metronome = true;
 
 //  NeuronalSynchrony.SequencerLayout.on("show", function(){
 //    NeuronalSynchrony.SequencerLayout.barsRegion.show(NeuronalSynchrony.SequencerPanel);
 //    NeuronalSynchrony.SequencerLayout.toolsRegion.show(contactsListView);
 //  });
 
-  $('#play_seq_button').bind('click', {}, function(event) {
-    var opts = {
-      query: {
-        include_docs: false,
-        fun: {
-          map: function(doc) {
-            if (doc.sessionName) {
-              emit(doc.sessionName, doc);
-            }
-          }
-        }
-      }
-    };
-    NeuronalSynchrony.Song.fetch({
-      fetch: 'query',
-      options: opts,
-      success: function(collection, response, options) {
-        console.log("item count: " + collection.length);
-        var viewOptions = {
-          collection : NeuronalSynchrony.Song,
-          itemView : NeuronalSynchrony.Views.BarView
-        };
-        var view = new NeuronalSynchrony.Views.SongView(viewOptions)
-//        NeuronalSynchrony.seqPanelRegion.show(view);
-//        $('#sequencer_panel').show();
-//        $('#stop_seq_button').show();
-        NeuronalSynchrony.seqPanelRegion.on("show", function(){
-          NeuronalSynchrony.SequencerLayout.toolsRegion.show(NeuronalSynchrony.SequencerPanel);
-          NeuronalSynchrony.SequencerLayout.barsRegion.show(view);
-        });
-
-        NeuronalSynchrony.seqPanelRegion.show(NeuronalSynchrony.SequencerLayout);
-        $('#sequencer_panel').show();
-      }
-    });
-  });
 
   // Function for moving the beat cursor
   NeuronalSynchrony.beatCount = -1;
@@ -303,7 +218,7 @@ $(function() {
         var createNode = function() {
           var node = context.createBufferSource()
           node.buffer = buffer
-          if (mute_metronome) {
+          if (NeuronalSynchrony.mute_metronome) {
             node.gain.value = 0;
           }
           node.connect(context.destination)
@@ -352,7 +267,7 @@ $(function() {
       NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 1);
       NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 2);
       NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 3);
-      mute_metronome = true;
+      NeuronalSynchrony.mute_metronome = true;
       $('#metro_trigger')[0].style.color = 'red';
       $('#metro_trigger')[0].style.textDecoration = 'line-through';
     }, (2000))

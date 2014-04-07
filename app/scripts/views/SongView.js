@@ -17,10 +17,10 @@ NeuronalSynchrony.Views = NeuronalSynchrony.Views || {};
 //      }
 //      ,
       events : {
-        "click #closeSeqPanel"	  : "closeSongView",
+//        "click #closeSeqPanel"	  : "closeSongView",
         "click .playBar"	  : "playMe",
-        "click .deleteBar"	  : "deleteBar",
-        "click #stop_seq_button"	  : "stopSeq"
+        "click .deleteBar"	  : "deleteBar"
+//        "click #stop_seq_button"	  : "stopSeq"
       },
       playMe: function(e) {
         var id = e.currentTarget.parentElement.attributes['data-id'].value;
@@ -49,6 +49,9 @@ NeuronalSynchrony.Views = NeuronalSynchrony.Views || {};
             console.log("Deleting bar.")
           }
         }))
+      },
+      close: function(e) {
+        console.log("closing SongView.")
       }
     });
 

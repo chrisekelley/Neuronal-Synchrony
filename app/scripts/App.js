@@ -10,6 +10,8 @@
   NeuronalSynchrony.Collections = {}
   NeuronalSynchrony.Views = {}
   NeuronalSynchrony.Routers = {}
+  NeuronalSynchrony.Layouts = {};
+
   NeuronalSynchrony.init = function () {
     'use strict';
     console.log('Hello from Backbone!');
@@ -44,5 +46,10 @@ $(document).ready(function () {
   NeuronalSynchrony.init();
   NeuronalSynchrony.MainMenuView = new NeuronalSynchrony.Views.MainMenuView();
   NeuronalSynchrony.creditsRegion.show(NeuronalSynchrony.MainMenuView)
+
+  NeuronalSynchrony.Song = new NeuronalSynchrony.Collections.SongCollection;
+  NeuronalSynchrony.SequencerLayout = new NeuronalSynchrony.Layouts.SequencerLayout();
+  NeuronalSynchrony.SequencerPanel = new NeuronalSynchrony.Views.SequencerPanelView();
+  NeuronalSynchrony.MainMenuView.loadSequencePanel();
 });
 
