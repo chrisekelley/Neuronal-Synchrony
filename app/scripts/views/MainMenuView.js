@@ -10,21 +10,21 @@
 //      this.loadSequencePanel()
 //    },
     events: {
-      "click #sequencerText-menu": "muteMetronome",
+      "click #sequencerText-menu": "toggleMetronome",
       "click #new_seq_button": "newSequence",
-      "click #play_seq_button": "showSequencerPanel"
+      "click #play_seq_button": "showSequencerPanel",
+      "change #bpmInput": "changeBpm"
 //      ,
-//      "click #closeSeqPanel"	  : "closeSongView",
 //      "click #stop_seq_button"	  : "stopSeq"
-//    ,
-//    "click #stop_seq_button": "stopSeq"
+    },
+    changeBpm: function(e) {
+      console.log("bpm changed.")
     },
     showSequencerPanel: function(e) {
-      console.log("closeSongView.")
       $('#sequencer_panel').show();
     },
-    muteMetronome: function(event) {
-      console.log("muteMetronome")
+    toggleMetronome: function(event) {
+      console.log("toggleMetronome")
       if (NeuronalSynchrony.mute_metronome) {
         NeuronalSynchrony.mute_metronome = false;
         $('#metro_trigger')[0].style.color = '#000000';
@@ -47,15 +47,29 @@
         }
       }
       if (beatAssets.length > 0) {
-        var doc = new NeuronalSynchrony.Models.BarModel({sessionName: NeuronalSynchrony.sessionName, currentBar: NeuronalSynchrony.currentBar, beatAssets:beatAssets});
-        doc.save(function(err, response) {
-          if (err) {
-            console.log("err: " + err)
-          } else {
-            console.log("Clearing current bar and reloading SequencePanel.")
-//            loadSequencePanel
+        var data = {sessionName: NeuronalSynchrony.sessionName, currentBar: NeuronalSynchrony.currentBar, beatAssets: beatAssets}
+//        var doc = new NeuronalSynchrony.Models.BarModel({sessionName: NeuronalSynchrony.sessionName, currentBar: NeuronalSynchrony.currentBar, beatAssets: beatAssets});
+//        doc.save({
+//          success: function (collection, response, options) {
+//            console.log("Adding new bar to song.")
+//            NeuronalSynchrony.Song.add(doc)
+////            loadSequencePanel
+//          },
+//          error: function (err) {
+//            console.log("Error: " + err);
+//          }
+//        })
+
+        NeuronalSynchrony.Song.create(data,{
+          success: function(model, resp){
+            console.log("added new record to song.");
+          },
+          error: function(err) {
+            console.log("Error saving: " + err);
           }
         });
+
+
       }
 
 //    db.allDocs({include_docs: true}, function(err, response) {
@@ -116,30 +130,6 @@
           event.clear()
         }
       }
-    },
-    closeSongView: function() {
-      console.log("closeSongView.")
-//    NeuronalSynchrony.Views.SongView.close();
-//    NeuronalSynchrony.SequencerLayout.toolsRegion.currentView.remove()
-//    NeuronalSynchrony.SequencerLayout.barsRegion.currentView.remove()
-//
-//    NeuronalSynchrony.SequencerLayout.toolsRegion.currentView.stopListening()
-//    NeuronalSynchrony.SequencerLayout.barsRegion.currentView.stopListening()
-//
-//    NeuronalSynchrony.SequencerLayout.toolsRegion.currentView.close()
-//    NeuronalSynchrony.SequencerLayout.barsRegion.currentView.close()
-//    NeuronalSynchrony.SequencerLayout.toolsRegion.stopListening();
-//    NeuronalSynchrony.SequencerLayout.barsRegion.stopListening();
-//    NeuronalSynchrony.SequencerLayout.toolsRegion.close();
-//    NeuronalSynchrony.SequencerLayout.barsRegion.close();
-//
-//    NeuronalSynchrony.SequencerPanel.stopListening();
-
-      this.stopListening();
-      NeuronalSynchrony.seqPanelRegion.close();
-
-
-//    $('#sequencer_panel').hide();
     }
   })
 

@@ -1,2 +1,2 @@
-<td class="playBar">{{currentBar}}</td><td class="playBar">{{beatAssets}}</td><td class="deleteBar">[x]</td>
-
+<td class="playBar">{{#each beatAssets}}{{@index}}:{{this}},{{/each}}</td>
+<td class="deleteBar">[x]</td>

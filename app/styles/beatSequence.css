@@ -1,7 +1,10 @@
 .note {
   margin-bottom: 1em;
 }
-#pattern { border-spacing: 0; }
+#pattern {
+    border-spacing: 0;
+    margin-top: 0.5em;
+}
 #pattern td {
     padding-top: 0.1em;
     padding-bottom: 0.1em;

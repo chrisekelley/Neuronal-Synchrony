@@ -12,6 +12,11 @@
   NeuronalSynchrony.Routers = {}
   NeuronalSynchrony.Layouts = {};
 
+  NeuronalSynchrony.currentBar = 0;
+  NeuronalSynchrony.mute_metronome = true;
+  var bpmInput = $( "#bpm" );
+  NeuronalSynchrony.bpm = bpmInput.val()
+
   NeuronalSynchrony.init = function () {
     'use strict';
     console.log('Hello from Backbone!');
@@ -36,6 +41,16 @@
   Backbone.sync = BackbonePouch.sync({db: PouchDB('SEQdb')});
   Backbone.Model.prototype.idAttribute = '_id';
   NeuronalSynchrony.signature = 4;
+
+  NeuronalSynchrony.context = typeof AudioContext === 'undefined' ? new webkitAudioContext() : new AudioContext()
+  NeuronalSynchrony.clock = new WAAClock(NeuronalSynchrony.context, {toleranceEarly: 0.1})
+
+//  NeuronalSynchrony.soundBank = {}
+//  , tempo = QUERY.tempo || 120
+//    , tempo = QUERY.tempo ||  bpmInput.val()
+//    , signature = NeuronalSynchrony.signature  || 4
+//    , beatDur = 60/tempo, barDur = NeuronalSynchrony.signature * beatDur
+//    , clock = new WAAClock(context, {toleranceEarly: 0.1})
 
   return NeuronalSynchrony;
 

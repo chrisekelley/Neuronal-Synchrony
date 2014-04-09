@@ -14,3 +14,8 @@ body {
     margin-top: 35px;
     right: 5px;
 }
+
+.float-left {
+    float:left;
+    width:33%; // or 33% for equal width independent of parent width
+}

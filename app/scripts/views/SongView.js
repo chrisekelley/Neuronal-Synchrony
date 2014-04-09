@@ -11,16 +11,47 @@ NeuronalSynchrony.Views = NeuronalSynchrony.Views || {};
       itemView : NeuronalSynchrony.Views.BarView,
       template: JST['app/scripts/templates/SongView.hbs'],
       itemViewContainer : 'tbody',
-//      ,
-//      initialize : function() {
-//        this.listenTo(this.collection, 'all', this.update);
-//      }
-//      ,
+      initialize : function() {
+        this.listenTo(NeuronalSynchrony.Song, 'add', this.update);
+      },
       events : {
 //        "click #closeSeqPanel"	  : "closeSongView",
         "click .playBar"	  : "playMe",
         "click .deleteBar"	  : "deleteBar"
 //        "click #stop_seq_button"	  : "stopSeq"
+      },
+      itemIndex:0,
+      itemViewOptions: function(model, index) {
+        return {
+          itemIndex: index
+        }
+      },
+      getItemView: function(item){
+        var itemView = Marionette.getOption(this, "itemView") || this.constructor;
+
+        if (!itemView){
+          throwError("An `itemView` must be specified", "NoItemViewError");
+        }
+
+        var len = 0
+        if (this.collection != null) {
+          len = this.collection.length;
+        }
+        item.set('len',len)
+//        item.set('index',index)
+
+        return itemView;
+      },
+      appendHtml: function(compositeView, itemView, index) {
+
+        if (compositeView.isBuffering) {
+          compositeView.elBuffer.appendChild(itemView.el);
+          compositeView._bufferedChildren.push(itemView);
+        }
+        else {
+          var $container = this.getItemViewContainer(compositeView);
+          $container.append(itemView.el);
+        }
       },
       playMe: function(e) {
         var id = e.currentTarget.parentElement.attributes['data-id'].value;
