@@ -16,7 +16,7 @@ $(function() {
 // Function for moving the beat cursor
   NeuronalSynchrony.beatCount = -1;
   NeuronalSynchrony.beats = {}
-  var uiNextBeat = function() {
+  var uiNextBeat = function() {''
     NeuronalSynchrony.beatCount = (NeuronalSynchrony.beatCount + 1) % NeuronalSynchrony.signature
     //console.log("beatCount: " + NeuronalSynchrony.beatCount);
     $('#pattern td').removeClass('active')
@@ -29,9 +29,14 @@ $(function() {
     .tolerance(100)
 
 // This function activates the beat `beatInd` of `track`.
-  NeuronalSynchrony.startBeat = function(track, beatInd, asset) {
+  NeuronalSynchrony.startBeat = function (track, beatInd, asset, startNextBar) {
     var scheduleBeat = function(time, isFirst) {
-//      console.log("scheduling beat for " + track);
+      var currentTime = NeuronalSynchrony.context.currentTime
+      var currentBeat = Math.round(currentTime % barDur)
+      var currentBeatBare = currentTime % barDur
+//      var currentTimeFloored = ~~currentTime
+//      var currentBeatBetter = currentTimeFloored % barDur
+      console.log("scheduling beat for " + track + " NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount + " currentBeat: " + currentBeat + " currentBeatBare: " +currentBeatBare + " currentTime: " + currentTime);
       if (soundBank[track] != null) {
         var bufferNode = soundBank[track]()
       }
@@ -39,25 +44,23 @@ $(function() {
         , event = (bufferNode.start ? bufferNode.start2(time) : bufferNode.noteOn2(time))
           .tolerance(0.01)
       if (!isFirst) {
-        if (asset != null) {
+        if (asset != null & asset != false) {
           Duloop.simulateKeypress(asset)
         }
       } else {
         console.log("isFirst is true! not triggering the sample.")
       }
-
-      var preEvent = function() {
-        console.log("I'm an event!")
-        var fun = function() {console.log("I'm also an event!")}
-        return fun;
-      }
-//      var event = preEvent()
 //      event.time = time
       event.asset = asset
       event.on('executed', redo)
       event.on('expired', redo)
       NeuronalSynchrony.beats[track][beatInd] = event
     }
+//    if ((typeof startNextBar != "undefined") && (startNextBar)){
+//      // schedule for the beginning of the next beat.
+//      var nextBarTimeStart = nextBarTime(0);
+//      console.log("NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount + " nextBarTime: " + nextBarTimeStart)
+//    }
     scheduleBeat(nextBeatTime(beatInd), true)
   }
 
@@ -74,8 +77,25 @@ $(function() {
     var currentTime = NeuronalSynchrony.context.currentTime
       , currentBar = Math.floor(currentTime / barDur)
       , currentBeat = Math.round(currentTime % barDur)
-    if (currentBeat < beatInd) return currentBar * barDur + beatInd * beatDur
-    else return (currentBar + 1) * barDur + beatInd * beatDur
+    if (currentBeat < beatInd) {
+      var nextBeatTime = currentBar * barDur + beatInd * beatDur;
+      console.log("LESS: currentBeat: " + currentBeat+ " beatInd: " + beatInd + " currentTime: " + currentTime + " currentBar: " + currentBar + " nextBeatTime: " + nextBeatTime)
+      return  nextBeatTime
+    }
+    else {
+      var neatBeatTime = (currentBar + 1) * barDur + beatInd * beatDur;
+      console.log("MORE: currentBeat: " + currentBeat+ " beatInd: " + beatInd + " currentTime: " + currentTime + " currentBar: " + currentBar + " neatBeatTime: " + neatBeatTime)
+      return  neatBeatTime
+    }
+  }
+// This helper calculates the absolute time of the next bar
+  var nextBarTime = function(beatInd) {
+    var currentTime = NeuronalSynchrony.context.currentTime
+      , currentBar = Math.floor(currentTime / barDur)
+      , currentBeat = Math.round(currentTime % barDur)
+      var nextBarTime = (currentBar + 1) * barDur + beatInd * beatDur;
+      console.log("nextBarTime Calc: currentBeat: " + currentBeat+ " beatInd: " + beatInd + " currentTime: " + currentTime + " currentBar: " + currentBar + " nextBarTime: " + nextBarTime)
+      return  nextBarTime
   }
 
 // This helper loads sound buffers
@@ -140,10 +160,10 @@ $(function() {
     request.send()
   }
 
-  loadTrackFromPath('assets/B/flash-1.mp3')
-  NeuronalSynchrony.beats['assets/B/flash-1.mp3'] = {}
-  loadTrackFromPath('assets/B/flash-2.mp3')
-  NeuronalSynchrony.beats['assets/B/flash-2.mp3'] = {}
+  loadTrackFromPath('sounds/strike_edit.wav')
+  NeuronalSynchrony.beats['sounds/strike_edit.wav'] = {}
+  loadTrackFromPath('sounds/flash-2_edit.wav')
+  NeuronalSynchrony.beats['sounds/flash-2_edit.wav'] = {}
 
 
 
@@ -165,7 +185,7 @@ $(function() {
               var beat = $(this)
               if (!beat.hasClass('active')) {
                 beat.addClass('active')
-                NeuronalSynchrony.startBeat(trackName, beatInd)
+                NeuronalSynchrony.startBeat(trackName, beatInd, false)
               } else {
                 beat.removeClass('active')
                 stopBeat(trackName, beatInd)
@@ -175,10 +195,10 @@ $(function() {
         }
       })
 
-      NeuronalSynchrony.startBeat('assets/B/flash-2.mp3', 0);
-      NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 1);
-      NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 2);
-      NeuronalSynchrony.startBeat('assets/B/flash-1.mp3', 3);
+      NeuronalSynchrony.startBeat('sounds/flash-2_edit.wav', 0, false);
+      NeuronalSynchrony.startBeat('sounds/strike_edit.wav', 1, false);
+      NeuronalSynchrony.startBeat('sounds/strike_edit.wav', 2, false);
+      NeuronalSynchrony.startBeat('sounds/strike_edit.wav', 3, false);
       NeuronalSynchrony.mute_metronome = true;
       $('#metro_trigger')[0].style.color = 'red';
       $('#metro_trigger')[0].style.textDecoration = 'line-through';

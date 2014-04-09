@@ -83,7 +83,7 @@ $(function() {
           }
           bpm = bpmInput.val();
           console.log("Current bpm: " + bpm + "at NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount);
-          NeuronalSynchrony.startBeat('graphics', NeuronalSynchrony.beatCount, e.which);
+          NeuronalSynchrony.startBeat('graphics', NeuronalSynchrony.beatCount, e.which, false);
 //          var interval = window.setInterval(function() {
 //                simulateKeypress(e.which)
 //            }, (4 * (sec * 1000) * 60 / bpm))

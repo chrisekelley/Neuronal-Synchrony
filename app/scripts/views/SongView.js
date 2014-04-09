@@ -66,7 +66,7 @@ NeuronalSynchrony.Views = NeuronalSynchrony.Views || {};
         }
         var beatAssets = record[0].get("beatAssets")
         beatAssets.forEach(function(element, index, list) {
-          NeuronalSynchrony.startBeat('graphics', index, element);
+          NeuronalSynchrony.startBeat('graphics', index, element, true);
         })
       },
       deleteBar: function(e) {
