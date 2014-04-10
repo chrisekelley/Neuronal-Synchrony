@@ -13,7 +13,7 @@
       "click #sequencerText-menu": "toggleMetronome",
       "click #new_seq_button": "newSequence",
       "click #play_seq_button": "showSequencerPanel",
-      "change #bpmInput": "changeBpm"
+      "change #bpmChosen": "changeBpm"
 //      ,
 //      "click #stop_seq_button"	  : "stopSeq"
     },

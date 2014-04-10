@@ -19,3 +19,51 @@ body {
     float:left;
     width:33%; // or 33% for equal width independent of parent width
 }
+
+#bpmSlide {
+    width: 110px;
+    margin-top: 1.0em;
+    margin-left: -25px;
+}
+
+#bpmChosen {
+    padding-left: 1em;
+}
+
+#barsRegion {
+padding-top: 35px;
+}
+#new_seq_button {
+    position:relative;
+    top:10px;
+}
+.sequencerPanel {
+    text-align: center;
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 12px;
+    /*line-height: 64px; */
+}
+#metro_trigger {
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+.deleteBar:hover {
+    background-color:yellow
+}
+.playBar:hover {
+    background-color:lightblue;
+}
+#outerSeqToolBar {
+    position:relative;
+}
+#seqToolBar {
+    padding: .5em .5em 0em .5em;
+    text-align: left;
+    background-color: #666666;
+    position:absolute;
+    top:50%;
+    height:5em;
+    width:155px;
+    margin-top:-2.5em
+}

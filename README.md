@@ -7,7 +7,7 @@ A collection of two dimensional animations that are triggered by sound.
 
 Prototyped with [Processing](http://processing.org/), built with [JavaScript](http://jonobr1.github.com/two.js).
 
-Added bpm input. Will respond to live bpm changes when recording a loop. Must change focus (click on screen) from input for this change to register.
+Use the slider to change the tempo.
 
 Sequencing comes from [WAAClock](https://github.com/sebpiq/WAAClock) from [sebpiq](https://github.com/sebpiq).
 

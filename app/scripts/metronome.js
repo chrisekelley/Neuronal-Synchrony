@@ -8,8 +8,8 @@ $(function() {
 //    NeuronalSynchrony.SequencerLayout.toolsRegion.show(contactsListView);
 //  });
   var bpm = 120;
-  var bpmInput = $( "#bpmInput" );
-  bpm = bpmInput.val();
+//  var bpmInput = $( "#bpmChosen" );
+//  bpm = bpmInput.html();
 
   var soundBank = {} , beatDur = 60/bpm, barDur = NeuronalSynchrony.signature * beatDur
 
@@ -36,7 +36,7 @@ $(function() {
       var currentBeatBare = currentTime % barDur
 //      var currentTimeFloored = ~~currentTime
 //      var currentBeatBetter = currentTimeFloored % barDur
-      console.log("scheduling beat for " + track + " NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount + " currentBeat: " + currentBeat + " currentBeatBare: " +currentBeatBare + " currentTime: " + currentTime);
+//      console.log("scheduling beat for " + track + " NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount + " currentBeat: " + currentBeat + " currentBeatBare: " +currentBeatBare + " currentTime: " + currentTime);
       if (soundBank[track] != null) {
         var bufferNode = soundBank[track]()
       }

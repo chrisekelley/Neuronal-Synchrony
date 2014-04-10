@@ -31,3 +31,12 @@ function rainbowPastel(numOfSteps, step) {
   var c = "#" + ("00" + (~~red).toString(16)).slice(-2) + ("00" + (~~green).toString(16)).slice(-2) + ("00" + (~~blue).toString(16)).slice(-2);
   return (c);
 }
+
+function updateSlider(newTempo) {
+  var currentTempo = $('#bpmChosen').html();
+  NeuronalSynchrony.clock.timeStretch(NeuronalSynchrony.clock._events, currentTempo / newTempo)
+  console.log("setting tempo from " +currentTempo + " to " + newTempo + " value / bpm: " + currentTempo / newTempo)
+//  bpm = bpmInput.html();
+  $('#bpmChosen').html(newTempo);
+
+}

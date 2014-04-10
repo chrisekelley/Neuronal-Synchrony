@@ -16,8 +16,8 @@ $(function() {
     // Do what you want with this code under the MIT license
     // http://opensource.org/licenses/MIT
     var bpm = 120;
-    var bpmInput = $( "#bpm" );
-    bpm = bpmInput.val();
+    var bpmInput = $( "#bpmChosen" );
+    bpm = bpmInput.html();
     var sec = 2;
     var pat = [];
     // Keep track of setInterval functions for future removal:
@@ -37,28 +37,28 @@ $(function() {
 
   Duloop.onKeyDown = function(e) {
         //console.log("keydown");
-    var bpmInput = $( "#bpmInput" );
-
-    if (e.target.id === 'bpmInput') {
-//          var input = $( "#bpm" );
-          if (e.which >= 48 && e.which <= 57) {
-            var res = String.fromCharCode(e.which);
-            bpmInput.val( bpmInput.val() + res );
-            var bpmChange = window.setTimeout(function() {
-              var tempo = bpmInput.val();
-              NeuronalSynchrony.clock.timeStretch(NeuronalSynchrony.clock._events, tempo / bpm)
-              console.log("setting tempo to: " + tempo + "/" + bpm)
-              bpm = bpmInput.val();
-            }, (2000))
-          }
-          if (e.which == 8) {
-            var bpmValue = bpmInput.val();
-            if (bpmValue.length > 0) {
-              bpmValue = bpmValue.substring(0, bpmValue.length-1);
-              bpmInput.val(bpmValue);
-            }
-          }
-        }
+    var bpmInput = $( "#bpmChosen" );
+//
+//    if (e.target.id === 'bpmInput') {
+////          var input = $( "#bpm" );
+//      if (e.which >= 48 && e.which <= 57) {
+//        var res = String.fromCharCode(e.which);
+//        bpmInput.val( bpmInput.val() + res );
+//        var bpmChange = window.setTimeout(function() {
+//          var tempo = bpmInput.val();
+//          NeuronalSynchrony.clock.timeStretch(NeuronalSynchrony.clock._events, tempo / bpm)
+//          console.log("setting tempo to: " + tempo + "/" + bpm)
+//          bpm = bpmInput.val();
+//        }, (2000))
+//      }
+//      if (e.which == 8) {
+//        var bpmValue = bpmInput.val();
+//        if (bpmValue.length > 0) {
+//          bpmValue = bpmValue.substring(0, bpmValue.length-1);
+//          bpmInput.val(bpmValue);
+//        }
+//      }
+//    }
 
         // Stop looping on "delete" key press:
         // changed from 46
@@ -81,7 +81,7 @@ $(function() {
           if (e.which == 9 || e.which == 91) {
             return false;
           }
-          bpm = bpmInput.val();
+          bpm = bpmInput.html();
           console.log("Current bpm: " + bpm + "at NeuronalSynchrony.beatCount: " + NeuronalSynchrony.beatCount);
           NeuronalSynchrony.startBeat('graphics', NeuronalSynchrony.beatCount, e.which, false);
 //          var interval = window.setInterval(function() {

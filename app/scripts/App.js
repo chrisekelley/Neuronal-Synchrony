@@ -14,8 +14,8 @@
 
   NeuronalSynchrony.currentBar = 0;
   NeuronalSynchrony.mute_metronome = true;
-  var bpmInput = $( "#bpm" );
-  NeuronalSynchrony.bpm = bpmInput.val()
+  var bpmInput = $( "#bpmChosen" );
+  NeuronalSynchrony.bpm = bpmInput.html()
 
   NeuronalSynchrony.init = function () {
     'use strict';
