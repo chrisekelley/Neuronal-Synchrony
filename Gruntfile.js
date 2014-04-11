@@ -177,16 +177,16 @@ module.exports = function (grunt) {
                 dirs: ['<%= yeoman.dist %>']
             }
         },
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/images',
-                    src: '{,*/}*.{png,jpg,jpeg}',
-                    dest: '<%= yeoman.dist %>/images'
-                }]
-            }
-        },
+//        imagemin: {
+//            dist: {
+//                files: [{
+//                    expand: true,
+//                    cwd: '<%= yeoman.app %>/images',
+//                    src: '{,*/}*.{png,jpg,jpeg,svg}',
+//                    dest: '<%= yeoman.dist %>/images'
+//                }]
+//            }
+//        },
         cssmin: {
             dist: {
                 files: {
@@ -228,8 +228,11 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
+//                        'images/{,*/}*.{webp,gif,svg}',
                         'styles/fonts/{,*/}*.*',
+                        'assets/{,*/}*.*',
+                        'images/{,*/}*.*',
+                        'sounds/{,*/}*.*'
                     ]
                 }]
             }
@@ -250,7 +253,7 @@ module.exports = function (grunt) {
                     src: [
                         '<%= yeoman.dist %>/scripts/{,*/}*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+//                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         '/styles/fonts/{,*/}*.*',
                     ]
                 }
@@ -322,7 +325,7 @@ module.exports = function (grunt) {
         'createDefaultTemplate',
         'handlebars',
         'useminPrepare',
-        'imagemin',
+//        'imagemin',
         'htmlmin',
         'concat',
         'cssmin',

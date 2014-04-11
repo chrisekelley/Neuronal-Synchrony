@@ -1,5 +1,4 @@
-Neuronal Synchrony
-==================
+#Neuronal Synchrony
 
 A collection of two dimensional animations that are triggered by sound.
 
@@ -7,7 +6,9 @@ A collection of two dimensional animations that are triggered by sound.
 
 Prototyped with [Processing](http://processing.org/), built with [JavaScript](http://jonobr1.github.com/two.js).
 
-Use the slider to change the tempo.
+## Sequencer add on
+
+Built with [Backbone generator](https://github.com/yeoman/generator-backbone)
 
 Sequencing comes from [WAAClock](https://github.com/sebpiq/WAAClock) from [sebpiq](https://github.com/sebpiq).
 
@@ -15,4 +16,24 @@ Uses the [duloop.js](https://github.com/albinotonnina/Neuronal-Synchrony/commit/
 from  [albinotonnina](https://github.com/albinotonnina) to trigger the graphics.
 
 Icons thanks to [icomoon](http://icomoon.io)
+
+## Instructions
+
+
+Use the slider to change the tempo. Click the record button in the credits panel to record new sequences.
+
+Uses pouchdb to save sequences to browser db. TODO: replication w/ a master server.
+
+## Development
+
+Install Yeoman: npm install -g yo
+
+and [Backbone generator](https://github.com/yeoman/generator-backbone)
+
+grunt serve while developing
+
+grunt build to release. This creates a version in the dist directory.
+
+
+
 
