@@ -10,14 +10,14 @@ $(function() {
    */
 
   var letters = ['A', 'B', 'C', 'D', 'E', 'F'];
-  var path = '/assets/', filetype = '.mp3';
+  var path = 'assets/', filetype = '.mp3';
   var asset_count = 0, $loaded = $('#loaded');
 
   $('#total-assets').html(26 * letters.length);
 
   var soundsBuffered = _.after(26 * letters.length, function() {
     if (url.loop && url.loop.match(/(clap|groove)/ig)) {
-      new Sound('/assets/' + url.loop.replace(/\//ig, '') + '-loop' + filetype, function() {
+      new Sound('assets/' + url.loop.replace(/\//ig, '') + '-loop' + filetype, function() {
         this.play({
           loop: true
         });
