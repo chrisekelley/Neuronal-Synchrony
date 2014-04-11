@@ -10,7 +10,9 @@ Prototyped with [Processing](http://processing.org/), built with [JavaScript](ht
 
 !["Sequencer"](docs/sequencer.png)
 
-[demo on youtube](https://www.youtube.com/watch?v=uhSsgKXRi14&feature=youtu.be)
+[live demo](http://kinotel.com/Neuronal-Synchrony/) - this bootstraps with some pre-recorded sequences. Using [Pouchdb](http://pouchdb.com/) to store the sequences.
+
+[screencast on youtube](https://www.youtube.com/watch?v=uhSsgKXRi14&feature=youtu.be)
 
 Built with [Backbone generator](https://github.com/yeoman/generator-backbone)
 
