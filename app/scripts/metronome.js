@@ -48,7 +48,7 @@ $(function() {
           Duloop.simulateKeypress(asset)
         }
       } else {
-        console.log("isFirst is true! not triggering the sample.")
+//        console.log("isFirst is true! not triggering the sample.")
       }
 //      event.time = time
       event.asset = asset
@@ -84,7 +84,7 @@ $(function() {
     }
     else {
       var neatBeatTime = (currentBar + 1) * barDur + beatInd * beatDur;
-      console.log("MORE: currentBeat: " + currentBeat+ " beatInd: " + beatInd + " currentTime: " + currentTime + " currentBar: " + currentBar + " neatBeatTime: " + neatBeatTime)
+//      console.log("MORE: currentBeat: " + currentBeat+ " beatInd: " + beatInd + " currentTime: " + currentTime + " currentBar: " + currentBar + " neatBeatTime: " + neatBeatTime)
       return  neatBeatTime
     }
   }

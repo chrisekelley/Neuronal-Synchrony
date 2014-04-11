@@ -16,13 +16,10 @@ Tangerine.seed = (callback) ->
   initialDef = new $.Deferred();
   promises.push(initialDef);
   results = $.get 'importDocs/tangerine.json', (response) =>
-    console.log "success"
     results = response
   .done(() ->
-    console.log("results done.")
     Tangerine.docs = results
     initialDef.resolve(results)
-#    Tangerine.insertNewBars(results).done(initialDef.resolve(results))
     )
   return initialDef.promise();
 
@@ -49,7 +46,6 @@ Tangerine.insertNewBars = (response) ->
 Tangerine.initdoc = (callback) =>
   promise = Tangerine.seed()
   promise.done(() ->
-    console.log "It's done."
     Tangerine.insertNewBars(Tangerine.docs).done(()=>
       NeuronalSynchrony.MainMenuView.loadSequencePanel()
     )

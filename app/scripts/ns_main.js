@@ -250,6 +250,7 @@ $(function() {
         '<li>The X icon closes this panel. Bring it back by pressing the PLay icon beside the record button in the hidden menu.</li>' +
         '</ul>' +
         '</li>' +
+        '<li>Click Pacman to view this message again.</li>' +
         '</ul>');
     }
 
@@ -547,7 +548,7 @@ $(function() {
       return;
     }
     $hint.fadeIn();
-  }, 2000);  // 3 Second timeout
+  }, 10000);  // Ten Second timeout
 
   function triggered() {
     if (url.boolean('kiosk')) {

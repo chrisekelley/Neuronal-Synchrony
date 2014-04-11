@@ -13,6 +13,7 @@
       "click #sequencerText-menu": "toggleMetronome",
       "click #new_seq_button": "newSequence",
       "click #play_seq_button": "showSequencerPanel",
+      "click #pacman_button": "showHint",
       "change #bpmChosen": "changeBpm"
 //      ,
 //      "click #stop_seq_button"	  : "stopSeq"
@@ -22,6 +23,10 @@
     },
     showSequencerPanel: function(e) {
       $('#sequencer_panel').show();
+    },
+    showHint: function(e) {
+      var hint = $('#hint')
+      hint.fadeIn();
     },
     toggleMetronome: function(event) {
       console.log("toggleMetronome")
