@@ -16,7 +16,8 @@ This project adds a sequencer to the [original code](https://github.com/jonobr1/
 
 [live demo](http://kinotel.com/Neuronal-Synchrony/) - this bootstraps with some pre-recorded sequences. Using [Pouchdb](http://pouchdb.com/) to store the sequences.
 
-[screencast on youtube](https://www.youtube.com/watch?v=uhSsgKXRi14&feature=youtu.be)
+[screencast on youtube](https://www.youtube.com/watch?v=uhSsgKXRi14&feature=youtu.be): intro.
+[screencast on youtube](https://www.youtube.com/watch?v=WPn5EwShMTU&feature=youtu.be): save sequences using the file cabinet button.
 
 Built with [Backbone generator](https://github.com/yeoman/generator-backbone)
 
