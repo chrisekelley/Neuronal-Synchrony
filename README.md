@@ -6,7 +6,11 @@ A collection of two dimensional animations that are triggered by sound.
 
 Prototyped with [Processing](http://processing.org/), built with [JavaScript](http://jonobr1.github.com/two.js).
 
+[patatap website] (http://www.patatap.com/) - This is the original demo.
+
 ## Sequencer add on
+
+This project adds a sequencer to the [original code](https://github.com/jonobr1/Neuronal-Synchrony).
 
 !["Sequencer"](docs/sequencer.png)
 
