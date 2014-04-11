@@ -8,6 +8,10 @@ Prototyped with [Processing](http://processing.org/), built with [JavaScript](ht
 
 ## Sequencer add on
 
+!["Sequencer"](docs/sequencer.png)
+
+[demo on youtube](https://www.youtube.com/watch?v=uhSsgKXRi14&feature=youtu.be)
+
 Built with [Backbone generator](https://github.com/yeoman/generator-backbone)
 
 Sequencing comes from [WAAClock](https://github.com/sebpiq/WAAClock) from [sebpiq](https://github.com/sebpiq).
@@ -16,6 +20,12 @@ Uses the [duloop.js](https://github.com/albinotonnina/Neuronal-Synchrony/commit/
 from  [albinotonnina](https://github.com/albinotonnina) to trigger the graphics.
 
 Icons thanks to [icomoon](http://icomoon.io)
+
+!["Recording and Help controls"](docs/recordControls.png)
+
+Press the grey button to initiate record.
+Press the round triangle button to reveal the sequencer after hiding it.
+Press pacman to get instructions.
 
 ## Instructions
 
