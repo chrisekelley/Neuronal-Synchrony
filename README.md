@@ -34,6 +34,10 @@ grunt serve while developing
 
 grunt build to release. This creates a version in the dist directory.
 
+To delete the pouchdb:
+
+indexedDB.deleteDatabase('_pouch_SEQdb');
+
 
 
 

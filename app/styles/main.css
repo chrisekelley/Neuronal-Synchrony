@@ -67,3 +67,8 @@ padding-top: 35px;
     width:155px;
     margin-top:-2.5em
 }
+
+ul li
+{
+    padding-left: 1em;
+}

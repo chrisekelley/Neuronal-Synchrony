@@ -239,10 +239,17 @@ $(function() {
       $hint.find('.message').html('Press any key, A to Z or spacebar, and turn up speakers. ' +
         '<br/>Sequencer:' +
         '<ul style="text-align: left; margin: 1em"><li>To record/play a sequence, move the mouse in the lower area to reveal the menu.</li>' +
-        '<li>Click the round grey button to record bars. </li>' +
-        '<li>Click the play button to play bars.</li>' +
-        '<li>Click the cabinet to record a new bar.</li>' +
-        '<li>The metronome may be muted.</li>' +
+        '<li>Click the round grey button to start recording. </li>' +
+        '<li>Click the cabinet to save your bar and start a new bar. The sequence you just recorded appears in the upper right panel.</li>' +
+        '<li>There is a metronome; to unmute it, click the text "♩ 4/4 drum pattern, tempo 120 BPM". Click again to mute.</li>' +
+        '<li>After you are done recording, click the record button to stop recording. Refresh the page to play sequences. </li>' +
+        '<li>There is a toolbar in the upper right panel.' +
+        '<ul>' +
+        '<li>The square icon stops sequences.</li>' +
+        '<li>The metronome indicates the beats.</li>' +
+        '<li>The X icon closes this panel. Bring it back by pressing the PLay icon beside the record button in the hidden menu.</li>' +
+        '</ul>' +
+        '</li>' +
         '</ul>');
     }
 
@@ -540,7 +547,7 @@ $(function() {
       return;
     }
     $hint.fadeIn();
-  }, 20000);  // Twenty Second timeout
+  }, 2000);  // 3 Second timeout
 
   function triggered() {
     if (url.boolean('kiosk')) {

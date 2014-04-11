@@ -38,7 +38,9 @@
 
   NeuronalSynchrony.sessionName = Date.now();
   console.log("NeuronalSynchrony.sessionName: " + NeuronalSynchrony.sessionName);
-  Backbone.sync = BackbonePouch.sync({db: PouchDB('SEQdb')});
+//  Local database handle
+  NeuronalSynchrony.db = new PouchDB('SEQdb')
+  Backbone.sync = BackbonePouch.sync({db: NeuronalSynchrony.db});
   Backbone.Model.prototype.idAttribute = '_id';
   NeuronalSynchrony.signature = 4;
 
@@ -65,6 +67,6 @@ $(document).ready(function () {
   NeuronalSynchrony.Song = new NeuronalSynchrony.Collections.SongCollection;
   NeuronalSynchrony.SequencerLayout = new NeuronalSynchrony.Layouts.SequencerLayout();
   NeuronalSynchrony.SequencerPanel = new NeuronalSynchrony.Views.SequencerPanelView();
-  NeuronalSynchrony.MainMenuView.loadSequencePanel();
+  Tangerine.initdoc();
 });
 

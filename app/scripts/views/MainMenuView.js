@@ -87,9 +87,9 @@
           include_docs: false,
           fun: {
             map: function(doc) {
-              if (doc.sessionName) {
+//              if (doc.sessionName) {
                 emit(doc.sessionName, doc);
-              }
+//              }
             }
           }
         }

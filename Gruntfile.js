@@ -232,7 +232,8 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                         'assets/{,*/}*.*',
                         'images/{,*/}*.*',
-                        'sounds/{,*/}*.*'
+                        'sounds/{,*/}*.*',
+                        'importDocs/{,*/}*.*'
                     ]
                 }]
             }

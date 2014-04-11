@@ -38,5 +38,4 @@ function updateSlider(newTempo) {
   console.log("setting tempo from " +currentTempo + " to " + newTempo + " value / bpm: " + currentTempo / newTempo)
 //  bpm = bpmInput.html();
   $('#bpmChosen').html(newTempo);
-
 }
